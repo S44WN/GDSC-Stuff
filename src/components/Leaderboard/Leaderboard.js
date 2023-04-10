@@ -77,6 +77,7 @@ const Leaderboard = () => {
         <Confetti
           width={width - 20}
           height={height + 500}
+          recycle={false}
           numberOfPieces={100}
           tweenDuration={10000}
         />
@@ -86,7 +87,7 @@ const Leaderboard = () => {
       </h2>
 
       <div className="mx-auto  max-w-7xl px-6 lg:px-8">
-        <div class="flex flex-wrap pt-20 gap-y-12 sm:flex-row mx-auto sm:gap-x-8 justify-center align-center py-10 ">
+        <div class="flex flex-wrap pt-20 gap-y-16 sm:flex-row mx-auto sm:gap-x-8 justify-center align-center py-10 ">
           {leaderboards.map((leaderboard) => {
             if (leaderboard.rank === 2) {
               return (
