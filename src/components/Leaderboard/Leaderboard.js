@@ -1,3 +1,7 @@
+import Confetti from "react-confetti";
+import useWindowSize from "react-use/lib/useWindowSize";
+import React, { useState } from "react";
+
 const leaderboards = [
   {
     rank: 1,
@@ -56,9 +60,27 @@ const leaderboards = [
   },
 ];
 
-export default function Leaderboard() {
+const Leaderboard = () => {
+  const [isShown, setIsShown] = useState(false);
+  const { width, height } = useWindowSize();
+
   return (
     <div className="bg-orange-100 py-10 sm:py-32 ">
+      <Confetti
+        width={width - 20}
+        height={height + 800}
+        numberOfPieces={800}
+        recycle={false}
+        tweenDuration={10000}
+      />
+      {isShown && (
+        <Confetti
+          width={width - 20}
+          height={height + 500}
+          numberOfPieces={100}
+          tweenDuration={10000}
+        />
+      )}
       <h2 className="text-5xl text-center font-bold tracking-tight text-gray-900 sm:text-7xl mb-12">
         <span className="text-7xl block pb-4">📜</span>Leaderboard
       </h2>
@@ -68,7 +90,11 @@ export default function Leaderboard() {
           {leaderboards.map((leaderboard) => {
             if (leaderboard.rank === 2) {
               return (
-                <div className="sm:order-1 order-2 flex flex-col items-center shadow-lg hover:shadow-2xl w-60 bg-orange-200 rounded-xl p-2 transform transition-all hover:-translate-y-2 duration-300">
+                <div
+                  onMouseEnter={() => setIsShown(true)}
+                  onMouseLeave={() => setIsShown(false)}
+                  className="sm:order-1 order-2 flex flex-col items-center shadow-lg hover:shadow-2xl w-60 bg-orange-200 rounded-xl p-2 transform transition-all hover:-translate-y-2 duration-300"
+                >
                   <div className="flex items-center gap-x-2 pt-2 ">
                     <h2 className="text-9xl relative -top-12">🥈</h2>
                   </div>
@@ -84,7 +110,11 @@ export default function Leaderboard() {
 
             if (leaderboard.rank === 1) {
               return (
-                <div className="order-2 relative sm:-top-10 flex flex-col items-center shadow-lg hover:shadow-2xl w-60 bg-orange-200 rounded-xl p-2 transform transition-all hover:-translate-y-2 duration-300">
+                <div
+                  onMouseEnter={() => setIsShown(true)}
+                  onMouseLeave={() => setIsShown(false)}
+                  className="order-2 relative sm:-top-10 flex flex-col items-center shadow-lg hover:shadow-2xl w-60 bg-orange-200 rounded-xl p-2 transform transition-all hover:-translate-y-2 duration-300"
+                >
                   <div className="flex items-center gap-x-2 pt-2 ">
                     <h2 className="text-9xl relative -top-12">🏆</h2>
                   </div>
@@ -100,7 +130,11 @@ export default function Leaderboard() {
 
             if (leaderboard.rank === 3) {
               return (
-                <div className="order-3 flex flex-col items-center shadow-lg hover:shadow-2xl w-60 bg-orange-200 rounded-xl p-2 transform transition-all hover:-translate-y-2 duration-300">
+                <div
+                  onMouseEnter={() => setIsShown(true)}
+                  onMouseLeave={() => setIsShown(false)}
+                  className="order-3 flex flex-col items-center shadow-lg hover:shadow-2xl w-60 bg-orange-200 rounded-xl p-2 transform transition-all hover:-translate-y-2 duration-300"
+                >
                   <div className="flex items-center gap-x-2 pt-2 ">
                     <h2 className="text-9xl relative -top-12">🥉</h2>
                   </div>
@@ -135,4 +169,5 @@ export default function Leaderboard() {
       </div>
     </div>
   );
-}
+};
+export default Leaderboard;

@@ -7,9 +7,9 @@ import React from "react";
 function App() {
   return (
     <React.Fragment>
-      <ProjectBlog />
+      {/* <ProjectBlog /> */}
       <Leaderboard />
-      <Profile />
+      {/* <Profile /> */}
     </React.Fragment>
   );
 }
